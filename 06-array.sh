@@ -5,3 +5,4 @@ PERSOONS=("rAM" "sACHINA" "KRISH")
 
 echo "first person is : ${PERSOONS[0]}"
 echo "Third person is : ${PERSOONS[2]}"
+echo "all persons: ${PERSOONS[@]}"
