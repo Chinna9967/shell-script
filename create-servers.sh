@@ -5,6 +5,7 @@ INSTANCE_TYPE=""
 IMAGE_ID=ami-0b4f379183e5706b9
 SECURITY_GROUP_ID=sg-0b8b4d7e60b03214f
 DOMAIN_NAME=kpdigital.fun
+HOSTED_ZONE_ID=Z076395711MSQ2ORVF678
 
 # if mysql or mongodb instance_type should be t3.medium , for all others it is t2.micro
 
@@ -20,7 +21,7 @@ do
     IP_ADDRESS=$(aws ec2 run-instances --image-id $IMAGE_ID  --instance-type $INSTANCE_TYPE --security-group-ids $SECURITY_GROUP_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$i}]" | jq -r '.Instances[0].PrivateIpAddress')
     echo "created $i instance: $IP_ADDRESS"
 
-    aws route53 change-resource-record-sets --hosted-zone-id Z076395711MSQ2ORVF678 --change-batch '
+    aws route53 change-resource-record-sets --hosted-zone-id HOSTED_ZONE_IDs --change-batch '
     {
             "Changes": [{
             "Action": "CREATE",
